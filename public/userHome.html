@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventify • Home</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .image-card {
+  transition: all 0.3s ease;
+}
+
+.image-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+ .footer {
+  background: #1e293b;
+  color: white;
+  padding: 30px 20px;
+  margin-top: 40px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-left h3 {
+  margin: 0;
+}
+
+.footer-left p {
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+.footer-links a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.footer-social a {
+  margin-right: 10px;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+  </style>
+</head>
+
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+  <!-- 🔥 HEADER -->
+  <header class="bg-white shadow-sm border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+
+      <div class="flex items-center gap-3">
+        <img src="https://res.cloudinary.com/dk11fuqgz/image/upload/v1776185317/Screenshot_2026-04-14_221812_huwlhg.png"
+             class="w-10 h-10 rounded-lg object-cover">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">Eventify</h1>
+          <p class="text-xs text-gray-500 -mt-1">Event Management</p>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="/home.html" class="text-indigo-600">Dashboard</a>
+        <!-- <a href="/my-events.html" class="text-gray-600 hover:text-gray-900">My Events</a> -->
+      </nav>
+ 
+       <span id="username"></span>
+      <!-- <div class="flex items-center gap-5">
+        <span id="username" class="font-semibold text-gray-800">User</span> -->
+
+        <button onclick="logout()" 
+          class="bg-red-50 hover:bg-red-100 text-red-600 px-5 py-2.5 rounded-2xl text-sm font-semibold flex items-center gap-2">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+ 
+  <section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-10">
+     <div class="hero-bg text-white">
+    <div class="max-w-7xl mx-auto px-8 py-16">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-10">
+        <div class="max-w-lg">
+          <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-4">
+            Discover &amp; Create<br>Amazing Events
+          </h1>
+          <p class="text-xl text-white/80 mb-8">
+            Connect with people through unforgettable experiences
+          </p>
+          
+          <div class="flex flex-wrap gap-4">
+            <a href="/registrationEvent.html">
+  <button 
+    class="bg-white text-indigo-700 hover:bg-gray-100 font-semibold px-8 py-4 rounded-3xl flex items-center gap-3 text-lg shadow-xl transition-all">
+    Register Event
+  </button>
+</a>
+        
+     </div>
+        </div>
+
+        <!-- Hero Visual -->
+        <div class="hidden lg:block w-96">
+          <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622" 
+               class="rounded-3xl shadow-2xl" alt="Event">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </section>
+
+  <!-- 🔥 CATEGORIES -->
+  <section class="py-16 max-w-7xl mx-auto px-8">
+     <div class="mb-12">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-3xl font-semibold text-gray-900">Explore Categories</h2>
+        <a href="/events.html" class="text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-2">
+          View All <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div onclick="goToRegister('music')" class="image-card bg-white rounded-3xl overflow-hidden shadow-sm cursor-pointer">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNjPSavcPd1NFluuj3N_DeKHJUPy5IemnvNw&s" class="w-full h-52 object-cover">
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">Music &amp; Concerts</h3>
+            <p class="text-gray-500 text-sm">Live performances &amp; DJ nights</p>
+          </div>
+        </div>
+
+        <div onclick="goToRegister('tech')" class="image-card bg-white rounded-3xl overflow-hidden shadow-sm cursor-pointer">
+          <img src="data:image/jpeg;base64,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" class="w-full h-52 object-cover">
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">Tech &amp; Innovation</h3>
+            <p class="text-gray-500 text-sm">Meetups, workshops &amp; conferences</p>
+          </div>
+        </div>
+
+        <div onclick="goToRegister('college')" class="image-card bg-white rounded-3xl overflow-hidden shadow-sm cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329" class="w-full h-52 object-cover">
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">College Fests</h3>
+            <p class="text-gray-500 text-sm">Cultural &amp; technical fests</p>
+          </div>
+        </div>
+
+        <div onclick="goToRegister('sports')" class="image-card bg-white rounded-3xl overflow-hidden shadow-sm cursor-pointer">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_ME9N3ki7rqeZowtyyTHhQlP4YBkLaUufdw&s" class="w-full h-52 object-cover">
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">Sports Events</h3>
+            <p class="text-gray-500 text-sm">Tournaments &amp; matches</p>
+          </div>
+        </div>
+
+        <div onclick="goToRegister('night')" class="image-card bg-white rounded-3xl overflow-hidden shadow-sm cursor-pointer">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8alA1kjvsb7sl2-pNGn9s-QTLtjKhi7iSwQ&s" class="w-full h-52 object-cover">
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">Nightlife</h3>
+            <p class="text-gray-500 text-sm">Parties &amp; club events</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔥 EVENTS -->
+  <section class="max-w-7xl mx-auto px-8 pb-16">
+    <h2 class="text-3xl font-bold mb-8">All Register Events by me </h2>
+
+    <div id="events" class="grid md:grid-cols-3 gap-8"></div>
+  </section>
+
+  <!-- 🔥 FOOTER -->
+   <footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-left">
+      <h3>Event Manager</h3>
+      <p>Discover, create and manage amazing events </p>
+    </div>
+
+    <div class="footer-links">
+      <a href="/home.html">Home</a>
+      <a href="/events.html">Events</a>
+      <a href="/create-event.html">Create Event</a>
+    </div>
+
+    <div class="footer-social">
+      <span>Follow:</span>
+      <a href="#">🌐</a>
+      <a href="#">📸</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Event Manager | Made by KHUSHHALI
+  </div>
+</footer>       
+
+  <!-- 🔥 SCRIPT -->
+  <script>
+    async function loadUser() {
+      const res = await fetch("/auth/me", { credentials: "include" });
+      const user = await res.json();
+      document.getElementById("username").innerText =
+        user.username || user.email;
+    }
+
+async function loadEvents() {
+  try {
+    const res = await fetch("/registrations/my ");
+    const data = await res.json();
+
+    const container = document.getElementById("events");
+    if (data.length === 0) {
+  container.innerHTML = `
+    <div class="col-span-3 flex flex-col items-center justify-center py-20 text-center">
+
+      <p class="text-gray-500 text-lg font-medium mb-3">
+        No registered events yet 😢
+      </p>
+
+      <a href="/registrationEvent.html"
+         class="bg-indigo-600 text-white px-6 py-3 rounded-xl mt-2 hover:bg-indigo-700 transition">
+         Explore Events
+      </a>
+
+    </div>
+  `;
+  return;
+}
+    container.innerHTML = ""; // clear old data
+
+    data.forEach(event => {
+      container.innerHTML += `
+        <div class="bg-white rounded-3xl shadow p-4 hover:shadow-lg transition">
+
+          <img src="${event.image || 'https://picsum.photos/400'}"
+               class="rounded-2xl h-48 w-full object-cover mb-4">
+
+          <h3 class="font-bold text-lg">${event.title}</h3>
+
+          <p class="text-sm text-gray-500">
+            ${event.date} • ${event.location}
+          </p>
+
+          <p class="text-green-600 text-sm mt-2 font-medium">
+            ✔ Registered
+          </p>
+
+        </div>
+      `;
+    });
+
+  } catch (err) {
+    console.log("Error loading events");
+  }
+}
+
+
+    async function registerEvent(id) {
+      const res = await fetch("/registrations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ eventId: id })
+      });
+
+      const data = await res.json();
+      alert(data.message);
+    }
+
+    function logout() {
+      fetch("/auth/logout").then(() => {
+        window.location.href = "/login.html";
+      });
+    }
+  function goToRegister(type) {
+  window.location.href = `/registrationEvent.html?type=${type}`;
+}
+
+async function loadUser() {
+  try {
+    const res = await fetch("/auth/me", {
+      credentials: "include"
+    });
+
+    if (!res.ok) throw new Error();
+
+    const user = await res.json();
+
+    document.getElementById("username").innerText =
+      user.username || user.email;
+
+  } catch {
+    document.getElementById("username").innerText = "Guest";
+  }
+}
+    loadUser();
+    loadEvents();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Event • EventSphere</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Inter', system_ui, sans-serif;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    }
+
+    .form-input {
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+    }
+    
+    /* 🔥 FOOTER */
+.footer {
+  background: #1e293b;
+  color: white;
+  padding: 30px 20px;
+  margin-top: 40px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-left h3 {
+  margin: 0;
+}
+
+.footer-left p {
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+.footer-links a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.footer-social a {
+  margin-right: 10px;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+  </style>
+</head>
+<!-- <body class="min-h-screen flex items-center justify-center p-6"> -->
+<body class="min-h-screen flex flex-col">
+  <header class="bg-white shadow-sm border-b sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+
+    <div class="flex items-center gap-3">
+      <div style="width:45px;height:45px;overflow:hidden;border-radius:12px;">
+        <img src="https://res.cloudinary.com/dk11fuqgz/image/upload/v1776185317/Screenshot_2026-04-14_221812_huwlhg.png"
+             style="width:100%;height:100%;object-fit:cover;">
+      </div>
+
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">Eventify</h1>
+        <p class="text-xs text-gray-500 -mt-1">Event Management</p>
+      </div>
+    </div>
+
+    <nav class="hidden md:flex gap-8 text-sm font-medium">
+      <a href="/home.html" class="text-indigo-600">Dashboard</a>
+      <a href="/events.html" class="text-gray-600 hover:text-gray-900">My Events</a>
+    </nav>
+
+    <div class="flex items-center gap-5">
+      <!-- <span id="username" class="font-semibold text-gray-800">User</span> -->
+
+      <button onclick="logout()" 
+        class="bg-red-50 hover:bg-red-100 text-red-600 px-5 py-2.5 rounded-2xl text-sm font-semibold flex items-center gap-2">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+      </button>
+    </div>
+
+  </div>
+</header>
+<div class="flex-1 flex items-center justify-center p-6">
+  <div class="max-w-2xl w-full">   
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full text-white text-sm font-medium mb-3">
+        <i class="fas fa-calendar-plus"></i>
+        CREATE NEW EVENT
+      </div>
+      <h1 class="text-3xl font-bold text-white">Host Your Event</h1>
+    </div>
+
+    <!-- Form Card -->
+    <div class="card rounded-3xl p-10">
+      <form id="eventForm" enctype="multipart/form-data" class="space-y-6">     
+        <!-- Title -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Event Title</label>
+          <input 
+            type="text" 
+            name="title" 
+            placeholder="e.g. Techno Night 2026" 
+            required
+            class="form-input w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none text-base">
+        </div>
+
+        <!-- Date & Location -->
+        <div class="grid grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+            <input 
+              type="date" 
+              name="date" 
+              required
+              class="form-input w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+            <input 
+              type="text" 
+              name="location" 
+              placeholder="e.g. Chandigarh University" 
+              required
+              class="form-input w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none">
+          </div>
+        </div>
+
+        <!-- Category -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Event Category</label>
+          <div class="grid grid-cols-5 gap-3 text-sm">
+            <label class="cursor-pointer">
+              <input type="radio" name="type" value="college" class="peer hidden" required>
+              <div class="peer-checked:bg-indigo-100 peer-checked:text-indigo-700 border border-gray-200 hover:border-indigo-400 rounded-2xl py-3 text-center font-medium transition-all">
+                College
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="type" value="music" class="peer hidden">
+              <div class="peer-checked:bg-indigo-100 peer-checked:text-indigo-700 border border-gray-200 hover:border-indigo-400 rounded-2xl py-3 text-center font-medium transition-all">
+                Music
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="type" value="tech" class="peer hidden">
+              <div class="peer-checked:bg-indigo-100 peer-checked:text-indigo-700 border border-gray-200 hover:border-indigo-400 rounded-2xl py-3 text-center font-medium transition-all">
+                Tech
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="type" value="night" class="peer hidden">
+              <div class="peer-checked:bg-indigo-100 peer-checked:text-indigo-700 border border-gray-200 hover:border-indigo-400 rounded-2xl py-3 text-center font-medium transition-all">
+                Night Party
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="type" value="sports" class="peer hidden">
+              <div class="peer-checked:bg-indigo-100 peer-checked:text-indigo-700 border border-gray-200 hover:border-indigo-400 rounded-2xl py-3 text-center font-medium transition-all">
+                Sports
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+          <textarea 
+            name="description" 
+            rows="3"
+            placeholder="What makes this event special? (Optional)"
+            class="form-input w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none resize-none"></textarea>
+        </div>
+
+        <!-- Image Upload -->
+
+        <div>
+  <label class="block text-sm font-medium text-gray-700 mb-2">
+    Event Banner (Optional)
+  </label>
+
+  <!-- Preview -->
+  <div id="imagePreview" class="hidden mb-3 relative">
+    <img id="previewImg" class="w-full h-44 object-cover rounded-2xl">
+
+    <!-- 🔥 Change button -->
+    <button type="button"
+      onclick="document.getElementById('imageInput').click()"
+      class="absolute top-2 right-2 bg-black/60 text-white px-3 py-1 text-xs rounded-lg">
+      Change
+    </button>
+  </div>
+
+  <!-- Upload box -->
+  <label id="uploadBox"
+    class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 hover:border-indigo-500 rounded-2xl p-8 cursor-pointer transition-all hover:bg-gray-50">
+    
+    <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
+    <span class="font-medium text-gray-600">Upload Banner Image</span>
+
+    <input type="file" name="image" accept="image/*" id="imageInput" class="hidden">
+  </label>
+</div>
+
+        <!-- Submit Button -->
+        <button 
+          type="submit"
+          class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-4 rounded-2xl text-lg transition-all mt-2">
+          Create Event Now
+        </button>
+      </form>
+    </div>
+
+  </div>
+  </div>
+
+  <footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-left">
+      <h3>Event Manager</h3>
+      <p>Discover, create and manage amazing events </p>
+    </div>
+
+    <div class="footer-links">
+      <a href="/home.html">Home</a>
+      <a href="/events.html">Events</a>
+      <a href="/create-event.html">Create Event</a>
+    </div>
+
+    <div class="footer-social">
+      <span>Follow:</span>
+      <a href="#">🌐</a>
+      <a href="#">📸</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Event Manager | Made by KHUSHHALI
+  </div>
+</footer> 
+
+  <script>
+
+  let isSubmitting = false;
+
+  document.getElementById("eventForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (isSubmitting) return; 
+    isSubmitting = true;
+
+    const formData = new FormData(e.target);
+    const btn = e.target.querySelector("button");
+
+    btn.innerHTML = "Creating Event...";
+    btn.disabled = true;
+
+    try {
+      const res = await fetch("/events", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!res.ok) throw new Error("Failed");
+
+      alert("✅ Event Created Successfully!");
+
+      // 🔥 redirect only once
+      window.location.href = "/events.html";
+
+    } catch (error) {
+      console.error(error);
+
+      alert("❌ Something went wrong");
+
+      btn.innerHTML = "Create Event Now";
+      btn.disabled = false;
+      isSubmitting = false;
+    }
+  });
+
+const input = document.getElementById("imageInput");
+const preview = document.getElementById("imagePreview");
+const previewImg = document.getElementById("previewImg");
+const uploadBox = document.getElementById("uploadBox");
+
+input.addEventListener("change", function (e) {
+  const file = e.target.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = function (ev) {
+      previewImg.src = ev.target.result;
+
+      preview.classList.remove("hidden"); 
+      uploadBox.classList.add("hidden");  
+    };
+
+    reader.readAsDataURL(file);
+  }
+});
+  </script>
+</body>
+</html>
